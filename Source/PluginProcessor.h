@@ -13,7 +13,7 @@
 //==============================================================================
 /**
 */
-class MDAOverdriveAudioProcessor  : public juce::AudioProcessor
+class MDAOverdriveAudioProcessor  : public foleys::MagicProcessor
                             #if JucePlugin_Enable_ARA
                              , public juce::AudioProcessorARAExtension
                             #endif
@@ -34,8 +34,8 @@ public:
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    juce::AudioProcessorEditor* createEditor() override;
-    bool hasEditor() const override;
+    //juce::AudioProcessorEditor* createEditor() override;
+    //bool hasEditor() const override;
 
     //==============================================================================
     const juce::String getName() const override;
@@ -53,8 +53,8 @@ public:
     void changeProgramName (int index, const juce::String& newName) override;
 
     //==============================================================================
-    void getStateInformation (juce::MemoryBlock& destData) override;
-    void setStateInformation (const void* data, int sizeInBytes) override;
+    //void getStateInformation (juce::MemoryBlock& destData) override;
+    //void setStateInformation (const void* data, int sizeInBytes) override;
     
     juce::AudioProcessorValueTreeState apvts {*this, nullptr, "Parameters", createParameterLayout()};
 
@@ -72,6 +72,7 @@ private:
     juce::LinearSmoothedValue<float> outputLevelSmoother;
     
     float prevFiltered[2] = {0,0};
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MDAOverdriveAudioProcessor)
 };

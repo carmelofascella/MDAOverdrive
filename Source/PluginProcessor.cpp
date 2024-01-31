@@ -12,7 +12,7 @@
 //==============================================================================
 MDAOverdriveAudioProcessor::MDAOverdriveAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     : foleys::MagicProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
@@ -22,10 +22,40 @@ MDAOverdriveAudioProcessor::MDAOverdriveAudioProcessor()
                        )
 #endif
 {
+    FOLEYS_SET_SOURCE_PATH (__FILE__);
+    
+    
+    
+    //Load xml file for gui
+    auto file = juce::File::getSpecialLocation (juce::File::currentApplicationFile)
+        .getChildFile ("Contents")
+        .getChildFile ("Resources")
+        .getChildFile ("customMagic.xml");
+
+
+    if (file.existsAsFile())
+    {
+        std::cout << "File exists" << std::endl;
+        magicState.setGuiValueTree (file);
+    }
+        
+    
+    else
+    {
+        std::cout << "file DON'T exists" << std::endl;
+        magicState.setGuiValueTree (BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
+    }
+     
+    
+    //magicState.setGuiValueTree(BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
+        
+    
+     
 }
 
 MDAOverdriveAudioProcessor::~MDAOverdriveAudioProcessor()
 {
+ 
 }
 
 //==============================================================================
@@ -184,6 +214,7 @@ void MDAOverdriveAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 }
 
 //==============================================================================
+/*
 bool MDAOverdriveAudioProcessor::hasEditor() const
 {
     return true; // (change this to false if you choose to not supply an editor)
@@ -201,20 +232,24 @@ juce::AudioProcessorEditor* MDAOverdriveAudioProcessor::createEditor()
     //return new MDAOverdriveAudioProcessorEditor (*this);
 }
 
+
 //==============================================================================
 void MDAOverdriveAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
+    //foleys::MagicProcessor::getStateInformation(<#destData#>);
 }
 
 void MDAOverdriveAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-}
 
+}
+ */
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
@@ -227,29 +262,36 @@ juce::AudioProcessorValueTreeState::ParameterLayout MDAOverdriveAudioProcessor::
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
-    layout.add(std::make_unique<juce::AudioParameterFloat>(
-                                                           juce::ParameterID("Drive",1),
-                                                           "Drive",
-                                                           juce::NormalisableRange<float>(0.0f, 100.0f, 0.01f),
-                                                           0.0f,
-                                                           juce::AudioParameterFloatAttributes().withLabel("%")
-                                                           ));
+    auto driveParam = std::make_unique<juce::AudioParameterFloat>(
+                                                             juce::ParameterID("Drive",1),
+                                                             "Drive",
+                                                             juce::NormalisableRange<float>(0.0f, 100.0f, 0.01f),
+                                                             0.0f,
+                                                             juce::AudioParameterFloatAttributes().withLabel("%")
+                                                             );
     
-    layout.add(std::make_unique<juce::AudioParameterFloat>(
-                                                           juce::ParameterID("Muffle",1),
-                                                           "Muffle",
-                                                           juce::NormalisableRange<float>(0.0f, 100.0f, 0.01f),
-                                                           0.0f,
-                                                           juce::AudioParameterFloatAttributes().withLabel("%")
-                                                           ));
+    auto muffleParam = std::make_unique<juce::AudioParameterFloat>(
+                                                                   juce::ParameterID("Muffle",1),
+                                                                   "Muffle",
+                                                                   juce::NormalisableRange<float>(0.0f, 100.0f, 0.01f),
+                                                                   0.0f,
+                                                                   juce::AudioParameterFloatAttributes().withLabel("%")
+                                                                   );
     
-    layout.add(std::make_unique<juce::AudioParameterFloat>(
-                                                           juce::ParameterID("Output",1),
-                                                           "Output",
-                                                           juce::NormalisableRange<float>(-20.0f, 20.0f, 0.01f),
-                                                           0.0f,
-                                                           juce::AudioParameterFloatAttributes().withLabel("dB")
-                                                           ));
+    auto outputParam = std::make_unique<juce::AudioParameterFloat>(
+                                                                   juce::ParameterID("Output",1),
+                                                                   "Output",
+                                                                   juce::NormalisableRange<float>(-20.0f, 20.0f, 0.01f),
+                                                                   0.0f,
+                                                                   juce::AudioParameterFloatAttributes().withLabel("dB")
+                                                                   );
+    
+    
+    auto group = std::make_unique<juce::AudioProcessorParameterGroup>("Controls", "CONTROLS", "|",
+                                                                      std::move (driveParam),
+                                                                      std::move (muffleParam),
+                                                                      std::move (outputParam));
+    layout.add( std::move(group) );
     
     return layout;
 }

@@ -2,19 +2,25 @@
 
 <JUCERPROJECT id="zb7Sqt" name="MDAOverdrive" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" companyName="carmelofascella"
-              pluginManufacturer="carmelofascella">
+              pluginManufacturer="carmelofascella" includeBinaryInJuceHeader="1">
   <MAINGROUP id="UoHpoN" name="MDAOverdrive">
     <GROUP id="{B744FBC8-4FDA-79C2-314F-822A3A1E5A68}" name="Source">
-      <FILE id="MEI3F8" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="kutlmW" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="AIUV5E" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="PTla1v" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="A0XTdb" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp" xcodeResource="0"/>
+      <FILE id="rjnm0p" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"
+            xcodeResource="0"/>
+      <FILE id="TckK6y" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp" xcodeResource="0"/>
+      <FILE id="dl0I2M" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h" xcodeResource="0"/>
+    </GROUP>
+    <GROUP id="{324E9024-75A4-E501-B808-256A9F99674B}" name="Resources">
+      <FILE id="magsVj" name="customMagic.xml" compile="0" resource="1" file="Resources/customMagic.xml"
+            xcodeResource="1"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
@@ -23,13 +29,16 @@
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"
+               FOLEYS_ENABLE_BINARY_DATA="0"/>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
@@ -49,6 +58,9 @@
         <MODULEPATH id="juce_graphics" path="../../../../../Development/Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../../../../Development/Libraries/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../Development/Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Development/Libraries/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../../../Development/Libraries/JUCE/modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules/foleys_gui_magic/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
