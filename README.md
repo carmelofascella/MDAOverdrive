@@ -9,7 +9,7 @@ The plug-in has the following parameters:
 
 The user interface has been realised using the juce module <b>foleys_gui_magic</b>.
 
-<img align="centre" alt="gui" width="512px" src="./Resources/screen.png" />
+<img align="centre" alt="gui" width="1024px" src="./Resources/screen.png" />
 
 ### References
 
