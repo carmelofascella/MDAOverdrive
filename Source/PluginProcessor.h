@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 
+
 //==============================================================================
 /**
 */
@@ -61,8 +62,7 @@ public:
 private:
     
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
-    
-    
+
     
     void update();
     
@@ -70,6 +70,7 @@ private:
     float _gain;
     float _filt;
     juce::LinearSmoothedValue<float> outputLevelSmoother;
+    
     
     float prevFiltered[2] = {0,0};
 

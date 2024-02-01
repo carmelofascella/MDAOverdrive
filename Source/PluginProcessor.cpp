@@ -44,13 +44,37 @@ MDAOverdriveAudioProcessor::MDAOverdriveAudioProcessor()
     {
         std::cout << "file DON'T exists" << std::endl;
         magicState.setGuiValueTree (BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
+        
     }
      
     
     //magicState.setGuiValueTree(BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
-        
+
+    /*
+    auto onOffButton = magicState.getObjectWithType<juce::ToggleButton>("onOffButton");
     
+    onOffButton->onClick = []()
+    {
+        std::cout << "wewe" << std::endl;
+    };
      
+    magicState.addTrigger ("open", [&]
+    {
+        std::cout << "Trigger" << std::endl;
+        
+        auto onOffButton = magicState.getObjectWithType<juce::TextButton>("myTextButton");
+       
+        if(onOffButton!=nullptr) {
+            onOffButton->setClickingTogglesState(true);
+        }
+        else{
+            std::cout << "_nullptr" << std::endl;
+        }
+        
+    });
+     */
+    
+    
 }
 
 MDAOverdriveAudioProcessor::~MDAOverdriveAudioProcessor()
@@ -281,10 +305,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout MDAOverdriveAudioProcessor::
     auto outputParam = std::make_unique<juce::AudioParameterFloat>(
                                                                    juce::ParameterID("Output",1),
                                                                    "Output",
-                                                                   juce::NormalisableRange<float>(-20.0f, 20.0f, 0.01f),
+                                                                   juce::NormalisableRange<float>(-70.0f, 20.0f, 0.01f, 2.75f),
                                                                    0.0f,
                                                                    juce::AudioParameterFloatAttributes().withLabel("dB")
                                                                    );
+    
+    
     
     
     auto group = std::make_unique<juce::AudioProcessorParameterGroup>("Controls", "CONTROLS", "|",
@@ -308,4 +334,6 @@ void MDAOverdriveAudioProcessor::update()
     
     outputLevelSmoother.setTargetValue(juce::Decibels::decibelsToGain(gainDB));
     
+
+     
 }

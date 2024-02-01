@@ -38,4 +38,6 @@
 Builds/
 JuceLibraryCode/
 modules/
-Resources/
+
+Resources/KWX_LOGO_WHITE.png
+Resources/back.png
