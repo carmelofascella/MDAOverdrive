@@ -5,21 +5,19 @@
               pluginManufacturer="carmelofascella" includeBinaryInJuceHeader="1">
   <MAINGROUP id="UoHpoN" name="MDAOverdrive">
     <GROUP id="{B744FBC8-4FDA-79C2-314F-822A3A1E5A68}" name="Source">
-      <FILE id="A0XTdb" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp" xcodeResource="0"/>
-      <FILE id="rjnm0p" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"
-            xcodeResource="0"/>
-      <FILE id="TckK6y" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp" xcodeResource="0"/>
-      <FILE id="dl0I2M" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h" xcodeResource="0"/>
+      <FILE id="cEVRvO" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="SvLet2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="DTu1AR" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="yGofrk" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
     </GROUP>
     <GROUP id="{324E9024-75A4-E501-B808-256A9F99674B}" name="Resources">
+      <FILE id="H3r2e1" name="customMagic.xml" compile="0" resource="1" file="Resources/customMagic.xml"/>
       <FILE id="DtDSfj" name="KWX_LOGO_WHITE.png" compile="0" resource="1"
             file="Resources/KWX_LOGO_WHITE.png"/>
       <FILE id="wBwyki" name="back.png" compile="0" resource="1" file="Resources/back.png"/>
-      <FILE id="magsVj" name="customMagic.xml" compile="0" resource="1" file="Resources/customMagic.xml"
-            xcodeResource="1"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>

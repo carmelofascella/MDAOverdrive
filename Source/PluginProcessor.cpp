@@ -24,8 +24,8 @@ MDAOverdriveAudioProcessor::MDAOverdriveAudioProcessor()
 {
     FOLEYS_SET_SOURCE_PATH (__FILE__);
     
-    
-    
+    magicState.setGuiValueTree (BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
+    /*
     //Load xml file for gui
     auto file = juce::File::getSpecialLocation (juce::File::currentApplicationFile)
         .getChildFile ("Contents")
@@ -46,7 +46,7 @@ MDAOverdriveAudioProcessor::MDAOverdriveAudioProcessor()
         magicState.setGuiValueTree (BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
         
     }
-     
+     */
     
     //magicState.setGuiValueTree(BinaryData::customMagic_xml, BinaryData::customMagic_xmlSize);
 
